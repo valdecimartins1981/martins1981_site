@@ -4,7 +4,7 @@ Blog sobre Tecnologia, DevOps e SRE — conteúdo técnico de qualidade para pro
 
 ## 🚀 Stack
 
-- **Framework:** [Astro](https://astro.build) v4+
+- **Framework:** [Astro](https://astro.build) v5+
 - **CSS:** [TailwindCSS](https://tailwindcss.com) v3
 - **Fonte:** [Raleway](https://fonts.google.com/specimen/Raleway) (Google Fonts)
 - **Linguagem:** TypeScript
