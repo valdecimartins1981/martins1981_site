@@ -8,7 +8,12 @@ const blogCollection = defineCollection({
     pubDate: z.coerce.date(),
     category: z.string(),
     image: z.string().optional(),
-    author: z.string().default('Valdeci Martins'),
+    readTime: z.number().default(5),
+    author: z.object({
+      name: z.string(),
+      role: z.string().default(''),
+      bio: z.string().default(''),
+    }).or(z.string().transform((s) => ({ name: s, role: '', bio: '' }))),
     tags: z.array(z.string()).default([]),
   }),
 });

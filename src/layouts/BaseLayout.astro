@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'Blog sobre Tecnologia, DevOps e SRE — conteúdo técnico de qualidade para profissionais de tecnologia.',
+  description = 'A bold publication for SREs, DevOps engineers, and platform teams. Written by people who have been paged at 3am.',
   image = '/og-image.png',
 } = Astro.props;
 
@@ -19,7 +19,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,24 +28,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL} />
 
     <!-- SEO -->
-    <title>{title} | DevOps & SRE Blog</title>
+    <title>{title} | martins1981</title>
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | DevOps & SRE Blog`} />
+    <meta property="og:title" content={`${title} | martins1981`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta property="og:type" content="website" />
 
-    <!-- Google Fonts: Raleway -->
+    <!-- Google Fonts: Barlow Condensed + Playfair Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="min-h-screen flex flex-col bg-[#0f172a] text-slate-100 font-sans antialiased">
+  <body class="min-h-screen flex flex-col antialiased" style="background:#0a0a0a; color:#ffffff;">
     <Header />
     <main class="flex-1">
       <slot />

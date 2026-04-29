@@ -1,35 +1,181 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #1a1a1a;
+  --accent: #CCFF00;
+  --text-primary: #ffffff;
+  --text-muted: #888888;
+  --text-body: #cccccc;
+  --border: #2a2a2a;
+}
+
 @layer base {
   html {
-    font-family: 'Raleway', sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-dark text-slate-100;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center px-6 py-3 bg-accent-blue hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-300 gap-2;
+  .font-display {
+    font-family: 'Barlow Condensed', sans-serif;
   }
 
-  .btn-outline {
-    @apply inline-flex items-center px-6 py-3 border border-accent-cyan text-accent-cyan hover:bg-accent-cyan hover:text-dark font-semibold rounded-lg transition-all duration-300 gap-2;
+  .font-serif {
+    font-family: 'Playfair Display', serif;
   }
 
-  .card {
-    @apply bg-dark-card rounded-xl border border-slate-700/50 overflow-hidden hover:border-accent-blue/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent-blue/10;
+  .category-badge {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
+
+  .tag-pill {
+    border: 1px solid #444;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    display: inline-block;
+  }
+}
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 2rem 0;
+}
+
+pre, code {
+  background: var(--bg-card);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+pre {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* Article prose styles */
+.article-content h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.article-content h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.article-content p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s;
+}
+
+.article-content a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.article-content strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.article-content code:not(pre code) {
+  background: var(--bg-card);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.875em;
+  color: var(--accent);
+}
+
+.article-content pre {
+  margin-bottom: 1.5rem;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+
+.article-content th {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.article-content td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  color: var(--text-body);
+}
+
+.article-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
 }

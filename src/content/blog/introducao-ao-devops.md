@@ -1,14 +1,15 @@
 ---
-title: "Introdução ao DevOps: Conceitos Básicos e Cultura"
-description: "Descubra o que é DevOps, como surgiu, e como essa cultura transforma o desenvolvimento e a operação de software nas empresas modernas."
+title: "Introduction to DevOps: Concepts and Culture"
+description: "DevOps is not a tool, a role, or a methodology you can buy. It's a set of cultural practices that break down the walls between development and operations — and it's worth understanding properly before you implement it."
 pubDate: 2024-01-15
 category: "DevOps"
-image: "/images/devops-intro.jpg"
-author: "Valdeci Martins"
-tags: ["devops", "cultura", "ci-cd", "automação"]
+readTime: 6
+author:
+  name: "Valdeci Martins"
+  role: "Senior SRE Engineer"
+  bio: "Valdeci has spent over a decade keeping production systems alive. He writes about on-call culture, reliability engineering, and the human side of distributed systems."
+tags: ["devops", "culture", "ci-cd", "automation"]
 ---
-
-# Introdução ao DevOps: Conceitos Básicos e Cultura
 
 DevOps é uma combinação das palavras **Development** (desenvolvimento) e **Operations** (operações). Representa uma cultura, um conjunto de práticas e ferramentas que aumentam a capacidade de uma organização de entregar aplicações e serviços em alta velocidade.
 

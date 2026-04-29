@@ -1,107 +1,116 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import CategoryCard from '../components/CategoryCard.astro';
-import PostCard from '../components/PostCard.astro';
-import Newsletter from '../components/Newsletter.astro';
+import ArticleCard from '../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const featuredPost = sortedPosts[0];
+const recentPosts = sortedPosts.slice(1, 7);
 
-const categories = [
-  {
-    title: 'DevOps',
-    description: 'Cultura, práticas e ferramentas para integrar desenvolvimento e operações.',
-    href: '/devops',
-    icon: '⚙️',
-    color: 'bg-blue-500/20',
-  },
-  {
-    title: 'SRE',
-    description: 'Site Reliability Engineering: confiabilidade e disponibilidade em escala.',
-    href: '/sre',
-    icon: '📊',
-    color: 'bg-cyan-500/20',
-  },
-  {
-    title: 'Cloud',
-    description: 'AWS, GCP, Azure e as melhores práticas de computação em nuvem.',
-    href: '/blog',
-    icon: '☁️',
-    color: 'bg-sky-500/20',
-  },
-  {
-    title: 'Kubernetes',
-    description: 'Orquestração de containers com K8s, Helm e ecossistema CNCF.',
-    href: '/blog',
-    icon: '🚀',
-    color: 'bg-purple-500/20',
-  },
-  {
-    title: 'Linux',
-    description: 'Administração de sistemas, shell scripting e performance.',
-    href: '/blog',
-    icon: '🐧',
-    color: 'bg-orange-500/20',
-  },
-  {
-    title: 'Automação',
-    description: 'Terraform, Ansible, CI/CD e pipelines de infraestrutura.',
-    href: '/blog',
-    icon: '🤖',
-    color: 'bg-green-500/20',
-  },
-];
+const authorName = (author: string | { name: string }) =>
+  typeof author === 'string' ? author : author.name;
+
+const featuredDate = featuredPost?.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
-<BaseLayout title="Home — Tecnologia, DevOps e SRE">
-  <HeroSection />
+<BaseLayout title="Home — Technology, DevOps & SRE">
+  <div style="padding-top:64px;">
 
-  <!-- Categories Section -->
-  <section class="py-16 md:py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-10">
-        <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Explore as categorias</h2>
-        <p class="text-slate-400">Conteúdo organizado por área de conhecimento</p>
+    <!-- Hero Section -->
+    <section style="border-bottom:1px solid #2a2a2a;padding:4rem 1.5rem 3.5rem;">
+      <div style="max-width:1280px;margin:0 auto;">
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,6.5rem);color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:0.95;margin-bottom:1.5rem;">
+          ENGINEERING<br/>AT SCALE
+        </h1>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:1.2rem;max-width:600px;line-height:1.7;">
+          Deep technical writing for SREs, DevOps engineers, and platform teams. Published by engineers who have been paged at 3am.
+        </p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {categories.map((cat) => (
-          <CategoryCard {...cat} />
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Recent Posts Section -->
-  <section class="py-16 md:py-20 border-t border-slate-800/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-10">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Posts recentes</h2>
-          <p class="text-slate-400">Os últimos artigos publicados</p>
+    <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+
+      <!-- Featured Article -->
+      {featuredPost && (
+        <section style="padding:3rem 0;border-bottom:1px solid #2a2a2a;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+            <span style="font-family:'Inter',sans-serif;font-size:0.68rem;font-weight:600;color:#888888;letter-spacing:0.15em;text-transform:uppercase;">
+              FEATURED
+            </span>
+            <div style="flex:1;height:1px;background:#2a2a2a;"></div>
+          </div>
+
+          <a href={`/blog/${featuredPost.slug}`} style="text-decoration:none;display:block;">
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+              <span class="category-badge">{featuredPost.data.category}</span>
+              <span style="color:#555555;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-family:'Inter',sans-serif;">
+                {featuredDate}
+              </span>
+              <span style="color:#555555;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-family:'Inter',sans-serif;">
+                {featuredPost.data.readTime ?? 5} MIN READ
+              </span>
+            </div>
+
+            <h2
+              style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.25rem);color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:1.05;margin-bottom:1rem;transition:color 0.2s;"
+              onmouseover="this.style.color='#CCFF00'"
+              onmouseout="this.style.color='#ffffff'"
+            >
+              {featuredPost.data.title}
+            </h2>
+
+            <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:1.1rem;line-height:1.7;max-width:700px;margin-bottom:1.25rem;">
+              {featuredPost.data.description}
+            </p>
+
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <div style="width:28px;height:28px;background:#CCFF00;display:flex;align-items:center;justify-content:center;">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.875rem;color:#0a0a0a;">
+                  {authorName(featuredPost.data.author).charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <span style="font-family:'Inter',sans-serif;font-size:0.8rem;color:#888888;">
+                {authorName(featuredPost.data.author)}
+              </span>
+            </div>
+          </a>
+        </section>
+      )}
+
+      <!-- Recent Articles Grid -->
+      <section style="padding:3rem 0;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;">
+          <h2 style="font-family:'Inter',sans-serif;font-size:0.68rem;font-weight:600;color:#888888;letter-spacing:0.15em;text-transform:uppercase;margin:0;">
+            RECENT ARTICLES
+          </h2>
+          <div style="flex:1;height:1px;background:#2a2a2a;"></div>
+          <a href="/blog" style="font-family:'Inter',sans-serif;font-size:0.68rem;font-weight:600;color:#888888;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;"
+            onmouseover="this.style.color='#CCFF00'"
+            onmouseout="this.style.color='#888888'"
+          >
+            VIEW ALL →
+          </a>
         </div>
-        <a href="/blog" class="hidden sm:inline-flex items-center gap-2 text-blue-400 hover:text-cyan-400 font-medium transition-colors">
-          Ver todos
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sortedPosts.map((post) => (
-          <PostCard
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            category={post.data.category}
-            slug={post.slug}
-            image={post.data.image}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <Newsletter />
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:0 3rem;">
+          {recentPosts.map((post) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              category={post.data.category}
+              slug={post.slug}
+              readTime={post.data.readTime}
+            />
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </div>
 </BaseLayout>

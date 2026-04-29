@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostCard from '../../components/PostCard.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
@@ -9,37 +9,37 @@ const posts = allPosts
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title="DevOps" description="Artigos sobre cultura, práticas e ferramentas DevOps">
-  <div class="pt-24 pb-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-semibold uppercase tracking-widest mb-4">
-          ⚙️ DevOps
-        </div>
-        <h1 class="text-4xl md:text-5xl font-black text-white mb-4">DevOps</h1>
-        <p class="text-lg text-slate-400 max-w-2xl">
-          Cultura, práticas e ferramentas para integrar desenvolvimento e operações com agilidade e qualidade.
+<BaseLayout title="DevOps" description="Articles on DevOps culture, practices and tools">
+  <div style="padding-top:80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:3rem 1.5rem;">
+      <div style="border-bottom:1px solid #2a2a2a;padding-bottom:2rem;margin-bottom:2.5rem;">
+        <span class="category-badge" style="display:block;margin-bottom:0.5rem;">DevOps</span>
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:0.75rem;">
+          DEVOPS
+        </h1>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:1rem;">
+          Culture, practices, and tools for integrating development and operations
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div style="max-width:860px;">
         {posts.map((post) => (
-          <PostCard
+          <ArticleCard
             title={post.data.title}
             description={post.data.description}
             pubDate={post.data.pubDate}
             category={post.data.category}
             slug={post.slug}
-            image={post.data.image}
+            readTime={post.data.readTime}
           />
         ))}
-      </div>
 
-      {posts.length === 0 && (
-        <div class="text-center py-20">
-          <p class="text-slate-400">Nenhum post sobre DevOps ainda. <a href="/blog" class="text-blue-400 hover:underline">Ver todos os posts</a>.</p>
-        </div>
-      )}
+        {posts.length === 0 && (
+          <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;padding:3rem 0;">
+            No DevOps articles yet. <a href="/blog" style="color:#CCFF00;">See all articles</a>.
+          </p>
+        )}
+      </div>
     </div>
   </div>
 </BaseLayout>
