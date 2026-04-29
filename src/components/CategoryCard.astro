@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon: string;
+  color: string;
+}
+
+const { title, description, href, icon, color } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group block bg-[#1a2744] rounded-xl border border-slate-700/50 p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10"
+>
+  <div class={`w-12 h-12 rounded-xl ${color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+    <span class="text-2xl" set:html={icon} />
+  </div>
+  <h3 class="text-white font-bold text-lg mb-2 group-hover:text-blue-400 transition-colors">{title}</h3>
+  <p class="text-slate-400 text-sm leading-relaxed">{description}</p>
+</a>
