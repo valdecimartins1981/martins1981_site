@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from './ArticleCard.astro';
+
+interface Props {
+  currentSlug: string;
+  category: string;
+  limit?: number;
+}
+
+const { currentSlug, category, limit = 2 } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter((p) => p.slug !== currentSlug && p.data.category === category)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, limit);
+
+const authorName = (author: string | { name: string }) =>
+  typeof author === 'string' ? author : author.name;
+const readTime = (post: typeof related[0]) => post.data.readTime ?? 5;
+---
+
+{related.length > 0 && (
+  <section style="margin-top:3rem;padding-top:2.5rem;border-top:1px solid #2a2a2a;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#ffffff;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1.5rem;">
+      RELATED ARTICLES
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;">
+      {related.map((post) => (
+        <ArticleCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          slug={post.slug}
+          readTime={readTime(post)}
+        />
+      ))}
+    </div>
+  </section>
+)}

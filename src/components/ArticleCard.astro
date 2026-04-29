@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+  slug: string;
+  readTime?: number;
+}
+
+const { title, description, pubDate, category, slug, readTime = 5 } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article style="border-bottom:1px solid #2a2a2a;padding:2rem 0;">
+  <a href={`/blog/${slug}`} style="text-decoration:none;display:block;">
+    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+      <span class="category-badge">{category}</span>
+      <span style="color:#555555;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">
+        {formattedDate}
+      </span>
+      <span style="color:#555555;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">
+        {readTime} MIN READ
+      </span>
+    </div>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:1.1;margin-bottom:0.6rem;transition:color 0.2s;"
+      onmouseover="this.style.color='#CCFF00'"
+      onmouseout="this.style.color='#ffffff'"
+    >
+      {title}
+    </h3>
+
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:0.95rem;line-height:1.65;margin:0;">
+      {description}
+    </p>
+  </a>
+</article>

@@ -1,14 +1,15 @@
 ---
-title: "Kubernetes para Iniciantes: Primeiros Passos com K8s"
-description: "Aprenda os conceitos fundamentais do Kubernetes, como instalar um cluster local e fazer seu primeiro deploy de uma aplicação containerizada."
+title: "Kubernetes for Beginners: First Steps with K8s"
+description: "Learn the fundamental concepts of Kubernetes, how to install a local cluster, and make your first deployment of a containerized application."
 pubDate: 2024-01-29
-category: "Kubernetes"
-image: "/images/kubernetes.jpg"
-author: "Valdeci Martins"
-tags: ["kubernetes", "k8s", "containers", "docker", "cloud-native"]
+category: "Platform"
+readTime: 8
+author:
+  name: "Valdeci Martins"
+  role: "Senior SRE Engineer"
+  bio: "Valdeci has spent over a decade keeping production systems alive. He writes about on-call culture, reliability engineering, and the human side of distributed systems."
+tags: ["kubernetes", "k8s", "containers", "docker", "platform"]
 ---
-
-# Kubernetes para Iniciantes: Primeiros Passos com K8s
 
 **Kubernetes** (ou K8s) é a plataforma de orquestração de containers mais popular do mundo. Desenvolvido originalmente pelo Google e hoje mantido pela CNCF (Cloud Native Computing Foundation), o Kubernetes automatiza o deployment, scaling e gerenciamento de aplicações containerizadas.
 

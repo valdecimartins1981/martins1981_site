@@ -1,14 +1,15 @@
 ---
-title: "SRE vs DevOps: Diferenças e Complementaridades"
-description: "Entenda as diferenças entre Site Reliability Engineering (SRE) e DevOps, como eles se complementam e qual adotar na sua organização."
+title: "SRE vs DevOps: They're Not the Same Job"
+description: "After years of watching teams conflate these two disciplines, it's time to draw clear lines. SRE and DevOps share values but diverge sharply in practice, tooling, and organizational structure."
 pubDate: 2024-01-22
-category: "SRE"
-image: "/images/sre-devops.jpg"
-author: "Valdeci Martins"
-tags: ["sre", "devops", "reliability", "slo", "sla"]
+category: "Culture"
+readTime: 7
+author:
+  name: "Valdeci Martins"
+  role: "Senior SRE Engineer"
+  bio: "Valdeci has spent over a decade keeping production systems alive. He writes about on-call culture, reliability engineering, and the human side of distributed systems."
+tags: ["sre", "devops", "reliability", "culture"]
 ---
-
-# SRE vs DevOps: Diferenças e Complementaridades
 
 Se você trabalha com infraestrutura ou desenvolvimento, certamente já ouviu falar de **DevOps** e **SRE** (Site Reliability Engineering). Embora sejam conceitos relacionados, eles têm origens, focos e abordagens distintas.
 

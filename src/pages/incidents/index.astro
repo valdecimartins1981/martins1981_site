@@ -5,20 +5,20 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter((p) => p.data.category === 'SRE')
+  .filter((p) => p.data.category === 'Incidents')
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title="SRE" description="Articles on Site Reliability Engineering">
+<BaseLayout title="Incidents & Postmortems" description="Articles on Incidents and Postmortems">
   <div style="padding-top:80px;">
     <div style="max-width:1280px;margin:0 auto;padding:3rem 1.5rem;">
       <div style="border-bottom:1px solid #2a2a2a;padding-bottom:2rem;margin-bottom:2.5rem;">
-        <span class="category-badge" style="display:block;margin-bottom:0.5rem;">SRE</span>
+        <span class="category-badge" style="display:block;margin-bottom:0.5rem;">Incidents</span>
         <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:0.75rem;">
-          SITE RELIABILITY ENGINEERING
+          INCIDENTS &amp; POSTMORTEMS
         </h1>
         <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:1rem;">
-          Reliability, availability, and scalability in production systems
+          War stories, postmortems, and lessons learned from production failures
         </p>
       </div>
 
@@ -36,7 +36,7 @@ const posts = allPosts
 
         {posts.length === 0 && (
           <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;padding:3rem 0;">
-            No SRE articles yet. <a href="/blog" style="color:#CCFF00;">See all articles</a>.
+            No incident articles yet. <a href="/blog" style="color:#CCFF00;">See all articles</a>.
           </p>
         )}
       </div>

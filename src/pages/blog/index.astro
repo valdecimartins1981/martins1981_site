@@ -1,42 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostCard from '../../components/PostCard.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title="Blog" description="Todos os posts sobre Tecnologia, DevOps e SRE">
-  <div class="pt-24 pb-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<BaseLayout title="Articles" description="All articles on Technology, DevOps and SRE">
+  <div style="padding-top:80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:3rem 1.5rem;">
+
       <!-- Header -->
-      <div class="mb-12 text-center">
-        <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Blog</h1>
-        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-          Artigos técnicos sobre DevOps, SRE, Cloud, Kubernetes e muito mais
+      <div style="border-bottom:1px solid #2a2a2a;padding-bottom:2rem;margin-bottom:2.5rem;">
+        <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5rem);color:#ffffff;text-transform:uppercase;letter-spacing:0.02em;line-height:1;margin-bottom:0.75rem;">
+          ARTICLES
+        </h1>
+        <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;font-size:1rem;">
+          Technical writing on DevOps, SRE, Platform Engineering, and Incidents
         </p>
       </div>
 
-      <!-- Posts grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Articles list -->
+      <div style="max-width:860px;">
         {sortedPosts.map((post) => (
-          <PostCard
+          <ArticleCard
             title={post.data.title}
             description={post.data.description}
             pubDate={post.data.pubDate}
             category={post.data.category}
             slug={post.slug}
-            image={post.data.image}
+            readTime={post.data.readTime}
           />
         ))}
+
+        {sortedPosts.length === 0 && (
+          <p style="font-family:'Playfair Display',serif;font-style:italic;color:#888888;padding:3rem 0;">
+            No articles published yet.
+          </p>
+        )}
       </div>
 
-      {sortedPosts.length === 0 && (
-        <div class="text-center py-20">
-          <p class="text-slate-400 text-lg">Nenhum post publicado ainda.</p>
-        </div>
-      )}
     </div>
   </div>
 </BaseLayout>
