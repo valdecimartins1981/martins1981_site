@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout title="Blog" description="Todos os posts sobre Tecnologia, DevOps e SRE">
+  <div class="pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Blog</h1>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+          Artigos técnicos sobre DevOps, SRE, Cloud, Kubernetes e muito mais
+        </p>
+      </div>
+
+      <!-- Posts grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            slug={post.slug}
+            image={post.data.image}
+          />
+        ))}
+      </div>
+
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-20">
+          <p class="text-slate-400 text-lg">Nenhum post publicado ainda.</p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

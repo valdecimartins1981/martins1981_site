@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Raleway', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-slate-100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 bg-accent-blue hover:bg-blue-600 text-white font-semibold rounded-lg transition-all duration-300 gap-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center px-6 py-3 border border-accent-cyan text-accent-cyan hover:bg-accent-cyan hover:text-dark font-semibold rounded-lg transition-all duration-300 gap-2;
+  }
+
+  .card {
+    @apply bg-dark-card rounded-xl border border-slate-700/50 overflow-hidden hover:border-accent-blue/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-accent-blue/10;
+  }
+}
